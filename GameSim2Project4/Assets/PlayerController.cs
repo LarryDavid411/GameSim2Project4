@@ -14,8 +14,11 @@ public class PlayerController : MonoBehaviour
     
    public void PlayerRunning()
    {
+       CharacterController playerMove = this.GetComponent<CharacterController>();
        animator.SetBool("IsRunning", true);
        animator.SetBool("IsWalking", false);
+       playerMove.Move(Vector3.forward * Time.deltaTime * 0.4f);
+
        //playerIsRunning = true;
    }
 
