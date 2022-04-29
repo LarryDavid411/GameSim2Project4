@@ -4,38 +4,110 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
-    public bool playerRunning;
     
+    public Animator animator;
 
+    public GameObject fsmController;
+    //public bool playerIsRunning;
+    //public bool playerIsWalking;
+    
+    
    public void PlayerRunning()
    {
        animator.SetBool("IsRunning", true);
+       animator.SetBool("IsWalking", false);
+       //playerIsRunning = true;
    }
 
-   public void StopRunning()
+   public void PlayerWalking()
    {
        animator.SetBool("IsRunning", false);
+       animator.SetBool("IsWalking", true);
    }
+
+   public void PlayerIdle()
+   {
+       animator.SetBool("IsRunning", false);
+       animator.SetBool("IsWalking", false);
+   }
+   //
+   // public void PlayerWalking()
+   // {
+   //     animator.SetBool("IsWalking", true);
+   // }
+   // public void StopWalking()
+   // {
+   //     animator.SetBool("IsWalking", false);
+   //     player
+   // }
+   //
+   // public void StopRunning()
+   // {
+   //     animator.SetBool("IsRunning", false);
+   //     playerIsRunning = false;
+   // }
     public void MovePlayer()
     {
-        if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
-        {
-            PlayerRunning();
-        }
+        FSMController.PlayerState playerState = fsmController.GetComponent<FSMController>().playerState;
 
-        if (playerRunning)
+        switch (playerState)
         {
-            if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.LeftShift) ||
-                Input.GetKeyUp(KeyCode.RightShift))
+            case FSMController.PlayerState.Running:
             {
-                StopRunning();
+                PlayerRunning();
             }
+                break;
+
+            case FSMController.PlayerState.Walking:
+            {
+                PlayerWalking();
+            }
+                break;
+
+            case FSMController.PlayerState.Idle:
+            {
+                PlayerIdle();
+            }
+                break;
         }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-           // StopRunning();
-        }
+        
+        
+        // if (player == FSMController.PlayerState.Running)
+        // {
+        //     PlayerRunning();
+        //     Debug.Log("WorkingAnim");
+        // }
+        // else if (player == FSMController.PlayerState.Walking)
+        // {
+        //     PlayerWalking();
+        // }
+        // else
+        // {
+        //   //  PlayerIdle();
+        // }
+
+        // switch (PlayerState.)
+        // {
+        //     
+        // }
+        // if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        // {
+        //     PlayerRunning();
+        // }
+        //
+        // if (playerIsRunning)
+        // {
+        //     if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.LeftShift) ||
+        //         Input.GetKeyUp(KeyCode.RightShift))
+        //     {
+        //         StopRunning();
+        //     }
+        // }
+        // if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        // {
+        //   PlayerWalking();
+        // }
+        
     }
     // Start is called before the first frame update
     void Start()
