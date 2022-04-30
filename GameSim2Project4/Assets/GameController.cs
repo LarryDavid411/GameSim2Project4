@@ -33,7 +33,5 @@ public class GameController : MonoBehaviour
 
         EnemyController enemyControllerObject = enemyController.GetComponent<EnemyController>();
         enemyControllerObject.MoveEnemies();
-        
-        
     }
 }

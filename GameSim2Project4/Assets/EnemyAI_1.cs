@@ -6,7 +6,13 @@ public class EnemyAI_1 : MonoBehaviour
 {
 
     public int enemyLevel;
+    //public GameObject levelManager;
 
+    public enum EnemyType
+    {
+        
+    }
+    
     public enum EnemyState
     {
         Red,
@@ -81,6 +87,11 @@ public class EnemyAI_1 : MonoBehaviour
         if (lightChange)
         {
             LightChange();
+            // if (enemyLevel == levelManager.GetComponent<LevelController>().currentLevel)
+            // {
+            //   
+            // }
+            
         }
         
         //transform.position += Vector3.left * Time.deltaTime;

@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject[] gameObjects;
+    public GameObject[] enemyObjectsType1;
+    public GameObject levelManager;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     public void LoadLevelEnemies()
     {
-        gameObjects = GameObject.FindGameObjectsWithTag("Enemy_1");
+        enemyObjectsType1 = GameObject.FindGameObjectsWithTag("Enemy_1");
     }
     
     public void MoveEnemies()
     {
-        for (int i = 0; i < gameObjects.Length; i++)
+        for (int i = 0; i < enemyObjectsType1.Length; i++)
         {
-            gameObjects[0].GetComponent<EnemyAI_1>().UpdateEnemy();
+            if (enemyObjectsType1[i].GetComponent<EnemyAI_1>().enemyLevel ==
+                levelManager.GetComponent<LevelController>().currentLevel)
+            {
+                enemyObjectsType1[i].GetComponent<EnemyAI_1>().UpdateEnemy();
+            }
         }
     }
 }
