@@ -10,8 +10,7 @@ public class LevelController : MonoBehaviour
     public GameObject enemyManager;
 
     public GameObject[] levelObjects;
-
-
+    
     private void IndexAllLevelObjects()
     {
         levelObjects = GameObject.FindGameObjectsWithTag("Enemy_1");

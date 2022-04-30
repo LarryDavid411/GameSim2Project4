@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject[] enemyObjectsType1;
     public GameObject levelManager;
+    public GameObject player;
     
     
     public void LoadLevelEnemies()
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
                 levelManager.GetComponent<LevelController>().currentLevel)
             {
                 enemyObjectsType1[i].GetComponent<EnemyAI_1>().UpdateEnemy();
+                enemyObjectsType1[i].transform.Find("Cone").GetComponent<LightCollision>().PlaceLightCone();
             }
         }
     }

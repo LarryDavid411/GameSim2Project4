@@ -32,7 +32,7 @@ public class FSMController : MonoBehaviour
                 //     playerState = PlayerState.Running;
                 //     Debug.Log("Running");
                 // }
-                if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
                 {
                     playerState = PlayerState.Walking;
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -45,7 +45,7 @@ public class FSMController : MonoBehaviour
             
             case PlayerState.Walking:
             {
-                if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+                if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
                 {
                     playerState = PlayerState.Idle;
                 }
@@ -59,8 +59,13 @@ public class FSMController : MonoBehaviour
 
             case PlayerState.Running:
             {
-                if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.LeftShift) ||
-                         Input.GetKeyUp(KeyCode.RightShift))
+                if (Input.GetKeyUp(KeyCode.LeftShift) ||
+                    Input.GetKeyUp(KeyCode.RightShift))
+                {
+                    playerState = PlayerState.Walking;
+                }
+                
+                if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
                 {
                     playerState = PlayerState.Idle;
                 }

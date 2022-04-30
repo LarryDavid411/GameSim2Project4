@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
     public Animator animator;
 
     public GameObject fsmController;
@@ -12,10 +11,7 @@ public class PlayerController : MonoBehaviour
     public float forwardPlayerRunningSpeed;
 
     public float forwardPlayerWalkingSpeed;
-    //public bool playerIsRunning;
-    //public bool playerIsWalking;
-    
-    
+   
    public void PlayerRunning()
    {
        CharacterController playerMove = this.GetComponent<CharacterController>();
