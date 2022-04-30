@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     public GameObject fsmController;
+
+    public float forwardPlayerRunningSpeed;
+
+    public float forwardPlayerWalkingSpeed;
     //public bool playerIsRunning;
     //public bool playerIsWalking;
     
@@ -15,17 +19,23 @@ public class PlayerController : MonoBehaviour
    public void PlayerRunning()
    {
        CharacterController playerMove = this.GetComponent<CharacterController>();
+       float horizontal = Input.GetAxisRaw("Horizontal");
+       float vertical = Input.GetAxisRaw("Vertical");
+       Vector3 direction = new Vector3(horizontal, 0, vertical);
        animator.SetBool("IsRunning", true);
        animator.SetBool("IsWalking", false);
-       playerMove.Move(Vector3.forward * Time.deltaTime * 0.4f);
-
-       //playerIsRunning = true;
+       playerMove.Move(direction * Time.deltaTime * forwardPlayerRunningSpeed);
    }
 
    public void PlayerWalking()
    {
+       CharacterController playerMove = this.GetComponent<CharacterController>();
+       float horizontal = Input.GetAxisRaw("Horizontal");
+       float vertical = Input.GetAxisRaw("Vertical");
+       Vector3 direction = new Vector3(horizontal, 0, vertical);
        animator.SetBool("IsRunning", false);
        animator.SetBool("IsWalking", true);
+       playerMove.Move(direction * Time.deltaTime * forwardPlayerWalkingSpeed);   
    }
 
    public void PlayerIdle()
