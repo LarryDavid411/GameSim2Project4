@@ -7,11 +7,13 @@ public class EnemyController : MonoBehaviour
     public GameObject[] enemyObjectsType1;
     public GameObject levelManager;
     public GameObject player;
+    //public GameObject[] doorKnobsType1;
     
     
     public void LoadLevelEnemies()
     {
         enemyObjectsType1 = GameObject.FindGameObjectsWithTag("Enemy_1");
+       
     }
     
     public void MoveEnemies()

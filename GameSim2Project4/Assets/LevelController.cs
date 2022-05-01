@@ -5,29 +5,41 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     public int currentLevel;
+    
     public bool levelTransition;
     public bool gameStartIndexLevels;
+    public bool loadLevelDoorKnobs;
     public GameObject enemyManager;
+    
 
-    public GameObject[] levelObjects;
+    public GameObject[] enemyInLevel;
+    // _knobStates;
+    public GameObject[] allLevels;
     
     private void IndexAllLevelObjects()
     {
-        levelObjects = GameObject.FindGameObjectsWithTag("Enemy_1");
-        
+        enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy_1");
+        //_knobStates = GameObject.FindGameObjectsWithTag("DoorKnobs1");
+        allLevels = GameObject.FindGameObjectsWithTag("Level");
     }
+
+    // public void LevelUpdate()
+    // {
+    //     
+    //     //for (int i = 0; i < doorKn)
+    // }
 
     public void LoadLevel()
     {
-        for (int i = 0; i < levelObjects.Length; i++)
+        for (int i = 0; i < enemyInLevel.Length; i++)
         {
-            if (levelObjects[i].GetComponent<EnemyAI_1>().enemyLevel == currentLevel)
+            if (enemyInLevel[i].GetComponent<EnemyAI_1>().enemyLevel == currentLevel)
             {
-                levelObjects[i].SetActive(true);
+                enemyInLevel[i].SetActive(true);
             }
             else
             {
-                levelObjects[i].SetActive(false);
+                enemyInLevel[i].SetActive(false);
             }
         }
         if (gameStartIndexLevels)
@@ -40,6 +52,15 @@ public class LevelController : MonoBehaviour
             EnemyController enemyManagerObject = enemyManager.GetComponent<EnemyController>();
             enemyManagerObject.LoadLevelEnemies();
             levelTransition = false;
+        }
+
+        if (loadLevelDoorKnobs)
+        {
+            LevelAttributes loadLevelDoorKnobsObject = allLevels[currentLevel - 1].GetComponent<LevelAttributes>();
+            loadLevelDoorKnobsObject.LoadDoorKnobsForCurrentLevel();
+           // DoorKnobController doorKnobObject = 
+            loadLevelDoorKnobs = false;
+
         }
     }
 }

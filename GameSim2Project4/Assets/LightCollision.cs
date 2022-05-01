@@ -9,6 +9,7 @@ public class LightCollision : MonoBehaviour
     public GameObject spotLight;
     public GameObject enemy;
     public GameObject player;
+    public LevelAttributes currentLevel;
     
    // public Collision player;
     private void Update()
@@ -34,11 +35,15 @@ public class LightCollision : MonoBehaviour
         {
             if (enemy.GetComponent<EnemyAI_1>().enemyState == EnemyAI_1.EnemyState.Green)
             {
-                other.GetComponent<HealthController>().health += Time.deltaTime;
+                currentLevel.levelHealth += Time.deltaTime;
+                currentLevel.LevelUpdate();
+                //other.GetComponent<HealthController>().health += Time.deltaTime;
             }
             else if (enemy.GetComponent<EnemyAI_1>().enemyState == EnemyAI_1.EnemyState.Red)
             {
-                other.GetComponent<HealthController>().health -= Time.deltaTime;
+                currentLevel.levelHealth -= Time.deltaTime;
+                currentLevel.LevelUpdate();
+                //other.GetComponent<HealthController>().health -= Time.deltaTime;
             }
             
         }

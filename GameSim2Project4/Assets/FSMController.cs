@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FSMController : MonoBehaviour
 {
-
     public GameObject playerController;
     
     public enum PlayerState
@@ -13,25 +12,15 @@ public class FSMController : MonoBehaviour
         Running,
         Idle
     }
-
-    
-    
-    
     
     public PlayerState playerState;
-
-
+    
     public void ModifyPlayerSate()
     {
         switch (playerState)
         {
             case PlayerState.Idle:
             {
-                // if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
-                // {
-                //     playerState = PlayerState.Running;
-                //     Debug.Log("Running");
-                // }
                 if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
                 {
                     playerState = PlayerState.Walking;
@@ -40,8 +29,7 @@ public class FSMController : MonoBehaviour
                         playerState = PlayerState.Running;
                     }
                 }
-            }
-                break;
+            } break;
             
             case PlayerState.Walking:
             {
@@ -54,8 +42,7 @@ public class FSMController : MonoBehaviour
                 {
                     playerState = PlayerState.Running;
                 }
-            }
-                break;
+            } break;
 
             case PlayerState.Running:
             {
@@ -69,13 +56,8 @@ public class FSMController : MonoBehaviour
                 {
                     playerState = PlayerState.Idle;
                 }
-            }
-                break;
-            
-            
+            } break;
         }
-        
-        
     }
     // Start is called before the first frame update
     void Start()
