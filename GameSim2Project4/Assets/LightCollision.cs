@@ -10,6 +10,7 @@ public class LightCollision : MonoBehaviour
     public GameObject enemy;
     public GameObject player;
     public LevelAttributes currentLevel;
+    public float lightReductionSpeed;
     
    // public Collision player;
     private void Update()
@@ -35,13 +36,13 @@ public class LightCollision : MonoBehaviour
         {
             if (enemy.GetComponent<EnemyAI_1>().enemyState == EnemyAI_1.EnemyState.Green)
             {
-                currentLevel.levelHealth += Time.deltaTime;
+                currentLevel.levelHealth += Time.deltaTime * lightReductionSpeed;
                 currentLevel.LevelUpdate();
                 //other.GetComponent<HealthController>().health += Time.deltaTime;
             }
             else if (enemy.GetComponent<EnemyAI_1>().enemyState == EnemyAI_1.EnemyState.Red)
             {
-                currentLevel.levelHealth -= Time.deltaTime;
+                currentLevel.levelHealth -= Time.deltaTime * lightReductionSpeed;
                 currentLevel.LevelUpdate();
                 //other.GetComponent<HealthController>().health -= Time.deltaTime;
             }

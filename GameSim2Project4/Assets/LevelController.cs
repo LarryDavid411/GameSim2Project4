@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
     public bool gameStartIndexLevels;
     public bool loadLevelDoorKnobs;
     public GameObject enemyManager;
+
+    public GameObject levelManager;
     
 
     public GameObject[] enemyInLevel;
@@ -19,7 +21,6 @@ public class LevelController : MonoBehaviour
     private void IndexAllLevelObjects()
     {
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy_1");
-        //_knobStates = GameObject.FindGameObjectsWithTag("DoorKnobs1");
         allLevels = GameObject.FindGameObjectsWithTag("Level");
     }
 

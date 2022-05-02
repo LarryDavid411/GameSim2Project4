@@ -11,7 +11,14 @@ public class PlayerController : MonoBehaviour
     public float forwardPlayerRunningSpeed;
 
     public float forwardPlayerWalkingSpeed;
-   
+
+    public GameObject cameraController;
+
+    public void RotatePlayer()
+    {
+
+        transform.eulerAngles = cameraController.GetComponent<CameraController>().playerRotation;
+    }
    public void PlayerRunning()
    {
        CharacterController playerMove = this.GetComponent<CharacterController>();
@@ -79,8 +86,10 @@ public class PlayerController : MonoBehaviour
             }
                 break;
         }
-        
-        
+
+        RotatePlayer();
+
+
         // if (player == FSMController.PlayerState.Running)
         // {
         //     PlayerRunning();
@@ -116,7 +125,7 @@ public class PlayerController : MonoBehaviour
         // {
         //   PlayerWalking();
         // }
-        
+
     }
     // Start is called before the first frame update
     void Start()

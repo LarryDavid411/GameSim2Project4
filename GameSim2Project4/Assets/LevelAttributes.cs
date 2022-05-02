@@ -7,6 +7,7 @@ public class LevelAttributes : MonoBehaviour
     public float levelHealth;
     public int levelNumber;
     public GameObject[] doorKnobsType1;
+    public GameObject levelManager;
     
    // public LevelController levelManager;
 
@@ -19,30 +20,33 @@ public class LevelAttributes : MonoBehaviour
     {
         //Debug.Log(doorKnobsType1.Length);
         float currentScore = 6 / levelHealth;
-        int setNumber = Mathf.RoundToInt(levelHealth); 
-        //Debug.Log(currentScore);
-        // if ((levelHealth - 1) * (2 - levelHealth) >= 0)
-        // {
-        //     setNumber = 1;
-        //     Debug.Log("type");
-        // }
-        //
-        Debug.Log("length" + doorKnobsType1.Length);
-        Debug.Log(setNumber);
+        int setNumber = Mathf.RoundToInt(levelHealth);
         
+        Debug.Log(setNumber);
 
-        for (int i = 0; i < doorKnobsType1.Length; i++)
+
+        if (setNumber > 0 && setNumber <= 6)
         {
-            if (doorKnobsType1[i].GetComponent<DoorKnobController>().knobSequence <= setNumber)
+            for (int i = 0; i < doorKnobsType1.Length; i++)
             {
-                doorKnobsType1[i].GetComponent<DoorKnobController>().knobState = DoorKnobController.KnobState.Green;
-            }
-            else
-            {
-                doorKnobsType1[i].GetComponent<DoorKnobController>().knobState = DoorKnobController.KnobState.Red;
-            }
+                if (doorKnobsType1[i].GetComponent<DoorKnobController>().knobSequence <= setNumber)
+                {
+                    doorKnobsType1[i].GetComponent<DoorKnobController>().knobState = DoorKnobController.KnobState.Green;
+                }
+                else
+                {
+                    doorKnobsType1[i].GetComponent<DoorKnobController>().knobState = DoorKnobController.KnobState.Red;
+                }
            
-            doorKnobsType1[i].GetComponent<DoorKnobController>().DoorKnobUpdate();
+                doorKnobsType1[i].GetComponent<DoorKnobController>().DoorKnobUpdate();
+            }
         }
+
+        if (setNumber > 6)
+        {
+          //  levelManager.GetComponent<LevelController>().currentLevel++;
+        }
+        
+        
     }
 }
