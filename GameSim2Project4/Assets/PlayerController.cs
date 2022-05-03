@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
 
     public void RotatePlayer()
     {
-
         transform.eulerAngles = cameraController.GetComponent<CameraController>().playerRotation;
     }
    public void PlayerRunning()
@@ -25,6 +24,7 @@ public class PlayerController : MonoBehaviour
        float horizontal = Input.GetAxisRaw("Horizontal");
        float vertical = Input.GetAxisRaw("Vertical");
        Vector3 direction = new Vector3(horizontal, 0, vertical);
+       direction = transform.TransformDirection(direction);
        animator.SetBool("IsRunning", true);
        animator.SetBool("IsWalking", false);
        playerMove.Move(direction * Time.deltaTime * forwardPlayerRunningSpeed);
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
        float horizontal = Input.GetAxisRaw("Horizontal");
        float vertical = Input.GetAxisRaw("Vertical");
        Vector3 direction = new Vector3(horizontal, 0, vertical);
+       direction = transform.TransformDirection(direction);
        animator.SetBool("IsRunning", false);
        animator.SetBool("IsWalking", true);
        playerMove.Move(direction * Time.deltaTime * forwardPlayerWalkingSpeed);   
