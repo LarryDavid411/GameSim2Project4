@@ -21,7 +21,9 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < enemyObjectsType1.Length; i++)
         {
             if (enemyObjectsType1[i].GetComponent<EnemyAI_1>().enemyLevel ==
-                levelManager.GetComponent<LevelController>().currentLevel)
+                levelManager.GetComponent<LevelController>().currentLevel ||
+                enemyObjectsType1[i].GetComponent<EnemyAI_1>().enemyLevel ==
+                levelManager.GetComponent<LevelController>().currentLevel - 1)
             {
                 enemyObjectsType1[i].GetComponent<EnemyAI_1>().UpdateEnemy();
                 enemyObjectsType1[i].transform.Find("Cone").GetComponent<LightCollision>().PlaceLightCone();

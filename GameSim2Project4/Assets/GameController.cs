@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public GameObject fsmController;
     public GameObject enemyController;
     public GameObject levelController;
+    public GameObject doorManager;
    
     // Start is called before the first frame update
     void Start()
@@ -33,5 +34,8 @@ public class GameController : MonoBehaviour
 
         EnemyController enemyControllerObject = enemyController.GetComponent<EnemyController>();
         enemyControllerObject.MoveEnemies();
+
+        DoorController doorManagerObject = doorManager.GetComponent<DoorController>();
+        doorManagerObject.OpenDoors();
     }
 }

@@ -18,7 +18,8 @@ public class EnemyAI_1 : MonoBehaviour
         Red,
         Green,
         TransitionToGreen,
-        TransitionToRed
+        TransitionToRed,
+        Off
     }
     public bool lightChange;
     
@@ -28,6 +29,7 @@ public class EnemyAI_1 : MonoBehaviour
     private float _lightTimer2;
     private float stateTimer;
     private float transitionTimer;
+    private Light light;
     
     public float stateInterval;
     public float stateChangeLength; 
@@ -78,6 +80,13 @@ public class EnemyAI_1 : MonoBehaviour
                     transitionTimer = 0;
                     enemyState = EnemyState.Red;
                 }
+            } break;
+
+            case EnemyState.Off:
+            {
+                light = spotLight.GetComponent<Light>();
+                light.enabled = false;
+//                Debug.Log('1');
             } break;
         } 
     }

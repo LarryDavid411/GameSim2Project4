@@ -34,13 +34,15 @@ public class LevelController : MonoBehaviour
     {
         for (int i = 0; i < enemyInLevel.Length; i++)
         {
-            if (enemyInLevel[i].GetComponent<EnemyAI_1>().enemyLevel == currentLevel)
+            if (enemyInLevel[i].GetComponent<EnemyAI_1>().enemyLevel == currentLevel &&
+                enemyInLevel[i].GetComponent<EnemyAI_1>().enemyLevel == currentLevel - 1)
             {
                 enemyInLevel[i].SetActive(true);
             }
             else
             {
-                enemyInLevel[i].SetActive(false);
+                //enemyInLevel[i].GetComponent<EnemyAI_1>().enemyState = EnemyAI_1.EnemyState.Off;
+                //enemyInLevel[i].SetActive(false);
             }
         }
         if (gameStartIndexLevels)

@@ -8,6 +8,10 @@ TagManager:
   - DoorKnobs
   - Level
   - DoorKnobs1
+  - Ground
+  - Doors
+  - DoorsRight
+  - DoorsLeft
   layers:
   - Default
   - TransparentFX

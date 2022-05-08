@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
 
     public void RotatePlayer()
     {
-        transform.eulerAngles = cameraController.GetComponent<CameraController>().playerRotation;
+        Vector3 rotationAngle = Vector3.zero;
+        rotationAngle.y = cameraController.GetComponent<CameraController>().playerRotation.y;
+        transform.eulerAngles = rotationAngle;
     }
    public void PlayerRunning()
    {
